@@ -1,14 +1,30 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+  <video [src]="weatherVideo" autoplay muted loop></video>
+  <aside class="overlay">
+    <i class="fas fa-map-marker"></i>
+    <p class="w-100 tc">Madrid, España</p>
+    <section class="dg-area">
+      <span>{{degrees}}</span>
+      <span class="symbol">º</span>
+      <p class="weather-status">{{weatherStatus}}</p>
+    </section>
+    <!--<footer class="weather-stats">-->
+    <!--<ul>-->
+    <!--<li>-->
+    <!--<h2>Humedad</h2>-->
+    <!--<p>16%</p>-->
+    <!--</li>-->
+    <!--<li class="divisor"></li>-->
+    <!--<li>-->
+    <!--<h2>Viento</h2>-->
+    <!--<p>16 km/h</p>-->
+    <!--</li>-->
+    <!--<li class="divisor"></li>-->
+    <!--<li>-->
+    <!--<h2>Visibilidad</h2>-->
+    <!--<p>Poca</p>-->
+    <!--</li>-->
+    <!--</ul>-->
+    <!--</footer>-->
+  </aside>
 </ion-content>
