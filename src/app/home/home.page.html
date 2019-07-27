@@ -1,12 +1,96 @@
-<ion-content>
-  <video [src]="weatherVideo" autoplay muted loop></video>
+<ion-content [scrollY]="false">
+  <video [ngClass]="fullInfo && 'deployed'" [src]="weatherVideo" autoplay muted loop></video>
+  <footer *ngIf="showInfo" [ngClass]="getFooterClasses()">
+    <header class="ph4">
+      <button class="absolute diary-button top-2 left-1 ml2" (click)="displayFullInfo()"><i
+              [ngClass]="'fas mid-gray fa-chevron-' + (fullInfo ? 'down' : 'up')"></i></button>
+      <img class="absolute border left-0 w-100" src="assets/img/border.png"/>
+      <aside class="absolute top-0 left-0 bg-transparent br3 w-50 h-25"></aside>
+      <div class="flex items-center justify-start">
+        <i class="fas fa-map-marker mr2 primary mt1"></i>
+        <select class="bn ma0 b f5 primary ttu outline-0" [(ngModel)]="town" (change)="getInformation()">
+          <option [value]="28079" class="primary ttu">Madrid</option>
+          <option [value]="28022" class="primary ttu">Boadilla del Monte</option>
+          <option [value]="28054" class="primary ttu">Escorial, El</option>
+          <option [value]="21041" class="primary ttu">Huelva</option>
+        </select>
+      </div>
+      <ul *ngIf="!fullInfo" class="list pa0 flex items-center ma0 justify-between pv4">
+        <li *ngFor="let day of weekWeather" class="pa0 tc">
+          <p class="ma0 mb2 pb1 f6 pa0 primary">{{getDateDay(day.fecha)}}</p>
+          <p class="ma0 pa0 moon-gray"><i [class]="'f4 ' + getIconForDayStatusWeather(day)"></i></p>
+        </li>
+      </ul>
+    </header>
+    <article *ngIf="fullInfo" class="animated fadeIn overflow-auto h-100 ph4">
+      <div class="bt bb b--black-05 pb2 mt3 pt3">
+        <h6 class="mid-gray ma0 mb4">Temperatura</h6>
+        <article class="flex items-center justify-between">
+          <div class="w-50 br b--black-05 pr3">
+            <h6 class="ma0 light-silver fw1 f6">Mínima</h6>
+            <p class="primary">{{getMinTemperature()}}ºC</p>
+          </div>
+          <div class="w-50 pl3">
+            <h6 class="ma0 light-silver fw1 f6">Máxima</h6>
+            <p class="primary">{{getMaxTemperature()}}ºC</p>
+          </div>
+        </article>
+      </div>
+      <div class="bb b--black-05 pb2 pt3">
+        <h6 class="mid-gray ma0 mb4">Previsión de la semana</h6>
+        <ul class="list pa0 flex items-center ma0 justify-between flex-wrap">
+          <li *ngFor="let day of weekWeather" class="pa0 flex items-center w-100 mb3 justify-between">
+            <aside class="flex items-center flex-start">
+              <div class="icon">
+                <i [class]="'f4 ' + getIconForDayStatusWeather(day)"></i>
+              </div>
+              <div class="ml4">
+                <span class="ma0 pa0 f7 moon-gray mr2">{{day.fecha | date : 'd LLLL'}}</span>
+                <span class="ma0 pa0 f6 mid-gray mb2">{{day.fecha | date : 'EEEE'}}</span>
+              </div>
+            </aside>
+            <div class="primary ml3 f5 flex items-end">
+              <span class="f6 silver mr1">{{day.temperatura.minima}}º</span>
+              <span>{{day.temperatura.maxima}}º</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="bb b--black-05 pb4 pt3">
+        <h6 class="mid-gray ma0 mb4">Tiempo por horas</h6>
+        <ul class="list pa0 flex items-center ma0 justify-between flex-wrap">
+          <li *ngFor="let hour of getAllHours()" class="pa0 flex items-center w-100 mb3 justify-between">
+            <aside class="flex items-center flex-start">
+              <div class="icon">
+                <i [class]="'f4 ' + getIconForStatus(hour.descripcion, hour.periodo)"></i>
+              </div>
+              <div class="ml4">
+                <div>
+                  <span class="ma0 pa0 f7 primary icon mr2">{{hour.periodo}}:00</span>
+                  <span class="ma0 pa0 f7 moon-gray icon mr2" >{{hour.fecha | date : 'd LLLL'}}</span>
+                </div>
+                <span class="ma0 pa0 f6 mid-gray mb2">{{hour.descripcion}}</span>
+              </div>
+            </aside>
+            <div class="primary ml3 f5 flex items-end">
+              <span>{{hour.value}}º</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </article>
+  </footer>
   <aside class="overlay">
-    <i class="fas fa-map-marker"></i>
-    <p class="w-100 tc">Madrid, España</p>
-    <section class="dg-area">
-      <span>{{degrees}}</span>
-      <span class="symbol">º</span>
-      <p class="weather-status">{{weatherStatus}}</p>
+    <section *ngIf="showInfo" class="dg-area flex items-start justify-start pt4 ph2 relative">
+      <p class="weather-status f4 fw1 pl3 mb1 ma0">{{weatherStatus}} <span class="f6 light-gray">a las {{ getDate() }}</span></p>
+      <article class="flex items-center justify-start">
+        <p class="ma0">{{degrees}}</p>
+        <p class="symbol">º</p>
+      </article>
+      <aside class="absolute top-2 right-1 mt1 ">
+        <button (click)="getInformation()" class="bg-transparent white"><i class="fas fa-sync-alt"></i></button>
+        <button (click)="navigateToAddLocations()" class="bg-transparent white"><i class="fas fa-plus-square"></i></button>
+      </aside>
     </section>
     <!--<footer class="weather-stats">-->
     <!--<ul>-->

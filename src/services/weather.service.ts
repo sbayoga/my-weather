@@ -25,4 +25,17 @@ export class WeatherService {
             Promise.reject('No data');
         }
     }
+
+    public async getHourTownWeather(town: number): Promise<any> {
+        const weather: any = await this.httpClient
+            .get(`${this.apiURL}prediccion/especifica/municipio/diaria/${town}`, {params: {'api_key': API_KEY}})
+            .toPromise()
+            .catch(error => Promise.reject(error));
+        if (weather.datos) {
+            const datos = await this.httpClient.get(weather.datos).toPromise();
+            return datos;
+        } else {
+            Promise.reject('No data');
+        }
+    }
 }

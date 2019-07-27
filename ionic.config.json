@@ -1,5 +1,7 @@
 {
   "name": "myweather",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

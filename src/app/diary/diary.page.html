@@ -1,0 +1,32 @@
+<ion-content>
+  <ul *ngIf="!getAllHours()" class="ma0 pa0 pv2">
+    <ion-skeleton-text class="mh2" animated style="width: 95%; height: 30px;"></ion-skeleton-text>
+    <ion-skeleton-text class="mh2" animated style="width: 95%; height: 30px;"></ion-skeleton-text>
+    <ion-skeleton-text class="mh2" animated style="width: 95%; height: 30px;"></ion-skeleton-text>
+    <ion-skeleton-text class="mh2" animated style="width: 95%; height: 30px;"></ion-skeleton-text>
+    <ion-skeleton-text class="mh2" animated style="width: 95%; height: 30px;"></ion-skeleton-text>
+    <ion-skeleton-text class="mh2" animated style="width: 95%; height: 30px;"></ion-skeleton-text>
+    <ion-skeleton-text class="mh2" animated style="width: 95%; height: 30px;"></ion-skeleton-text>
+    <ion-skeleton-text class="mh2" animated style="width: 95%; height: 30px;"></ion-skeleton-text>
+    <ion-skeleton-text class="mh2" animated style="width: 95%; height: 30px;"></ion-skeleton-text>
+    <ion-skeleton-text class="mh2" animated style="width: 95%; height: 30px;"></ion-skeleton-text>
+    <ion-skeleton-text class="mh2" animated style="width: 95%; height: 30px;"></ion-skeleton-text>
+    <ion-skeleton-text class="mh2" animated style="width: 95%; height: 30px;"></ion-skeleton-text>
+    <ion-skeleton-text class="mh2" animated style="width: 95%; height: 30px;"></ion-skeleton-text>
+    <ion-skeleton-text class="mh2" animated style="width: 95%; height: 30px;"></ion-skeleton-text>
+    <ion-skeleton-text class="mh2" animated style="width: 95%; height: 30px;"></ion-skeleton-text>
+    <ion-skeleton-text class="mh2" animated style="width: 95%; height: 30px;"></ion-skeleton-text>
+    <ion-skeleton-text class="mh2" animated style="width: 95%; height: 30px;"></ion-skeleton-text>
+    <ion-skeleton-text class="mh2" animated style="width: 95%; height: 30px;"></ion-skeleton-text>
+    <ion-skeleton-text class="mh2" animated style="width: 95%; height: 30px;"></ion-skeleton-text>
+    <ion-skeleton-text class="mh2" animated style="width: 95%; height: 30px;"></ion-skeleton-text>
+    <ion-skeleton-text class="mh2" animated style="width: 95%; height: 30px;"></ion-skeleton-text>
+  </ul>
+  <ul *ngIf="getAllHours()" class="diary-layout animated bounceInUp">
+    <li class="diary-item" *ngFor="let hour of getAllHours()" >
+      <span>{{hour.periodo}}:00</span>
+      <span>{{hour.descripcion}}</span>
+      <span>{{hour.value}}º</span>
+    </li>
+  </ul>
+</ion-content>

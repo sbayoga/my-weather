@@ -4,9 +4,6 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
-import 'tachyons/css/tachyons.min.css';
-import '@fortawesome/fontawesome-free/css/all.min.css';
-
 if (environment.production) {
   enableProdMode();
 }

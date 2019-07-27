@@ -9,3 +9,12 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+
+@import '~tachyons/css/tachyons.min.css';
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
+@import './theme/animated.css';
+
+.primary { color: #e91e63; }
+* {
+  font-family: 'Exo 2', sans-serif;
+}
